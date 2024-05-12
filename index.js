@@ -89,6 +89,10 @@ io.on('connection', socket => {
         io.to(data.roomID).emit('switch-turn', { currentPlayer: nextPlayerSocketID });
     });
 
+    socket.on('winner-found', (data)=>{
+        io.to(data.roomID).emit('winner-found', data.winner)
+    })
+
 
     socket.on('disconnect', () => {
         console.log("User with ID : " + socket.id + " disconnected");
